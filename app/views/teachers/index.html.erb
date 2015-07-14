@@ -9,8 +9,9 @@
 	          <p>Teaching: <%= teacher.subject %></p>
 	          <p>$<%= teacher.price %></p>
 	          <%= link_to 'Show', teacher, class: "btn btn-link" %>
-	          <%= link_to 'Edit', edit_teacher_path(teacher), class: "btn btn-link" %>
-	          <%= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %>
+            <% if (user_signed_in?) && (current_user == teacher.user) %>
+              <%= link_to 'Edit', edit_teacher_path(teacher), class: "btn btn-link" %>
+            <% end %>
 	        </div>
 	      </div>
 	    </div>
@@ -21,4 +22,6 @@
 <br>
 
 
-<%= link_to 'New Teacher', new_teacher_path, class: "btn btn-link" %>
+<% if user_signed_in? %>
+	<%= link_to 'New Teacher', new_teacher_path, class: "btn btn-link" %>
+<% end %>

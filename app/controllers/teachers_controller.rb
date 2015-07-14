@@ -1,5 +1,7 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :check_user, only: [:edit, :update, :destroy]
 
   # GET /teachers
   # GET /teachers.json
@@ -71,5 +73,11 @@ class TeachersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def teacher_params
       params.require(:teacher).permit(:first_name, :last_name, :description, :price, :skype, :qq, :country, :subject, :avatar)
+    end
+
+    def check_user
+      if current_user != @teacher.user
+        redirect_to root_url, alert: "Sorry, this acocunt belongs to someone else"
+      end
     end
 end
