@@ -12,10 +12,12 @@
     <p>Hourly Rate: <%= number_to_currency(@teacher.price) %></p>
     <p>Time Zone: <%= @teacher.user.time_zone %></p>
 
-		<div id="calendar" data-teacher-id="<%= @teacher.id %>" data-teacher-timezone="<%= @teacher.user.time_zone %>"></div>
+		<div id="calendar" class="calendar" data-teacher-id="<%= @teacher.id %>" data-teacher-timezone="<%= @teacher.user.time_zone %>"></div>
 
   </div>
 </div>
+
+<%= link_to 'New Availability', new_teacher_availability_path(@teacher), class: 'btn btn-link' %>
 
 <% if current_user == @teacher.user %>
 	<%= link_to 'Edit', edit_teacher_path(@teacher), class: "btn btn-link" %> |
