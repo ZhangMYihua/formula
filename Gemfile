@@ -18,6 +18,8 @@ gem "fog"
 gem "figaro"
 gem "mini_magick"
 gem 'devise'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
 group :development, :test do
 	gem 'sqlite3'
