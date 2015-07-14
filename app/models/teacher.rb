@@ -7,4 +7,6 @@ class Teacher < ActiveRecord::Base
 	validates_presence_of :qq, :unless => :skype?
 	belongs_to :user
 	has_many :availabilities, dependent: :destroy
+  has_many :bookings 
+  has_many :users, through: :bookings
 end
