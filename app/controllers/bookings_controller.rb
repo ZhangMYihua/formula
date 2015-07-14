@@ -10,10 +10,11 @@ class BookingsController < ApplicationController
     @user = current_user
     @booking.student_id = @user.id
     @booking.teacher = @teacher
+    @booking.end_time = put_end_time(@booking.start_time)
 
     respond_to do |format|
-      if @booking.save
-        format.html { redirect_to @teacher, notice: 'Availability was successfully created.' }
+      if @booking.update(booking_params)
+        format.html { redirect_to @teacher, notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @availability }
       else
         format.html {render :new}
@@ -30,6 +31,10 @@ class BookingsController < ApplicationController
   end
 
 private
+
+  def put_end_time(start_time)
+     (start_time.to_time + 1.hours).to_datetime
+  end
 
   def booking_params
     params.require(:booking).permit(:start_time, :end_time)
