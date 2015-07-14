@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :load_teacher
+  before_action :set_teacher
 
   def new
     @booking = @teacher.bookings.new
@@ -30,17 +30,16 @@ class BookingsController < ApplicationController
   end
 
 private
-
-  def put_end_time(start_time)
-     (start_time.to_time + 1.hours).to_datetime
-  end
-
   def booking_params
     params.require(:booking).permit(:start_time, :end_time)
   end
 
-  def load_teacher
+  def set_teacher
     @teacher = Teacher.find(params[:teacher_id])
+  end
+
+  def put_end_time(start_time)
+    (start_time.to_time + 1.hours).to_datetime
   end
 
 end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :users
   get 'pages/contact'
 
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :teachers do 
   	resources :availabilities
+    resources :reviews, except: [:show, :index]
     resources :bookings
   end
 

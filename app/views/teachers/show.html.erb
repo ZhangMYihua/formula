@@ -15,11 +15,25 @@
   </div>
 </div>
 
-<%= link_to 'New Availability', new_teacher_availability_path(@teacher), class: 'btn btn-link' %>
-<%= link_to 'New Booking', new_teacher_booking_path(@teacher), class: 'btn btn-link' %>
+<%= link_to 'New Availability', new_teacher_availability_path(@teacher), class: 'btn btn-primary' %>
+<%= link_to 'New Booking', new_teacher_booking_path(@teacher), class: 'btn btn-primary' %>
+<%= link_to "Write Review", new_teacher_review_path(@teacher), class: "btn btn-primary" %>
 
 <% if current_user == @teacher.user %>
 	<%= link_to 'Edit', edit_teacher_path(@teacher), class: "btn btn-link" %> |
 <% end %>
 
 <%= link_to 'Back', teachers_path, class: "btn btn-link" %>
+
+<div class='row'>
+  <div class='col-md-9'>
+    <% if @reviews.blank? %>
+      <h3>No reviews yet. Be the first to write one!</h3>
+    <% else %>
+      <% @reviews.each do |review| %>
+        <p><%= review.rating %></p>
+        <p><%= review.comment %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
