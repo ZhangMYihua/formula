@@ -31,8 +31,15 @@
   </div>
 </div>
 
+<<<<<<< HEAD
+<%= link_to 'New Availability', new_teacher_availability_path(@teacher), class: 'btn btn-primary' %>
+<%= link_to 'New Booking', new_teacher_booking_path(@teacher), class: 'btn btn-primary' %>
+<%= link_to "Write Review", new_teacher_review_path(@teacher), class: "btn btn-primary" %>
+=======
+>>>>>>> fivepm
 
 
+<<<<<<< HEAD
 <%= link_to 'Back', teachers_path, class: "btn btn-link" %>
 
 <div class='row'>
@@ -47,3 +54,5 @@
     <% end %>
   </div>
 </div>
+=======
+>>>>>>> fivepm
