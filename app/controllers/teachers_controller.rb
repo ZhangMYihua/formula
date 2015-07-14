@@ -12,6 +12,7 @@ class TeachersController < ApplicationController
   # GET /teachers/1
   # GET /teachers/1.json
   def show
+    @reviews = Review.where(teacher_id: @teacher.id)
   end
 
   # GET /teachers/new
