@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.2.2'
 
 
 
@@ -16,6 +17,8 @@ gem 'pry-rails'
 gem 'carrierwave'
 gem "fog"
 gem "figaro"
+gem 'rails_12factor', group: :production
+gem 'pg', group: :production
 
 group :development, :test do
   gem 'byebug'
