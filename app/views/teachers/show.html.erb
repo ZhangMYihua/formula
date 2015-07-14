@@ -1,44 +1,19 @@
 <p id="notice"><%= notice %></p>
-<%= image_tag @teacher.avatar_url %>
-<p>
-  <strong>First name:</strong>
-  <%= @teacher.first_name %>
-</p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @teacher.last_name %>
-</p>
+<div class="row">
+  <div class="col-md-3">
+      <%= image_tag @teacher.avatar_url, class: "img-rounded" %>
+  </div>
+  <div class="col-md-6 teacher-show">
+    <h3><%= "#{@teacher.first_name} #{@teacher.last_name }" %></h3>
+    <p>From: <%= @teacher.country %></p>
+    <p>Teaching: <%= @teacher.subject %></p>
+    <p>About <%= @teacher.first_name %>: <%= @teacher.description %></p>
+    <p>Hourly Rate: <%= number_to_currency(@teacher.price) %></p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @teacher.description %>
-</p>
+  </div>
+</div>
 
-<p>
-  <strong>Price:</strong>
-  <%= @teacher.price %>
-</p>
-
-<p>
-  <strong>Skype:</strong>
-  <%= @teacher.skype %>
-</p>
-
-<p>
-  <strong>Qq:</strong>
-  <%= @teacher.qq %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @teacher.country %>
-</p>
-
-<p>
-  <strong>Subject:</strong>
-  <%= @teacher.subject %>
-</p>
 
 <%= link_to 'Edit', edit_teacher_path(@teacher), class: "btn btn-link" %> |
 <%= link_to 'Back', teachers_path, class: "btn btn-link" %>
