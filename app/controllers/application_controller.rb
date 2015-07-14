@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_user_timezone
 
   protected
 
@@ -24,6 +25,10 @@ class ApplicationController < ActionController::Base
       :time_zone
       )
     }
+  end
+
+  def set_user_timezone
+    Time.zone = current_user.time_zone if current_user.present?
   end
 
 end
