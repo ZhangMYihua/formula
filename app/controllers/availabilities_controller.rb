@@ -10,11 +10,6 @@ class AvailabilitiesController < ApplicationController
     @availabilities = @teacher.availabilities.all
   end
 
-  # GET /availabilities/1
-  # GET /availabilities/1.json
-  def show
-  end
-
   # GET /availabilities/new
   def new
     @availability = @teacher.availabilities.new

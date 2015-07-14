@@ -1,10 +1,11 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_review, only: [:edit, :update, :destroy]
+  before_action :set_teacher
 
   # GET /reviews/new
   def new
-    @review = Review.new
+    @review = @teacher.reviews.new
   end
 
   # GET /reviews/1/edit
@@ -14,12 +15,13 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @review = Review.new(review_params)
+    @review = @teacher.reviews.build(review_params)
     @review.student_id = current_user.id
+    @review.restaurant_id = @restaurant.id
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to root_path, notice: 'Review was successfully created.' }
+        format.html { redirect_to @teacher, notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
         format.html { render :new }
@@ -56,6 +58,10 @@ class ReviewsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_review
       @review = Review.find(params[:id])
+    end
+
+    def set_teacher
+      @teacher = Teacher.find(params[:teacher_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
