@@ -20,6 +20,11 @@ $(document).on('ready page:change', function() {
 						rendering: 'background',
 						className: 'availability-color',
 						// editable: true, 
+					},
+					{
+						url: '/teachers/' + teacherId + '/bookings',
+						backgroundColor: '#9DD6F2',
+						className: 'booking-color'
 					}
 				],
 		});

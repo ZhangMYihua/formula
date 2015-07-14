@@ -7,29 +7,33 @@ class BookingsController < ApplicationController
 
   def create
     @booking = @teacher.bookings.build(booking_params)
-    @user = current_user
-    @booking.student_id = @user.id
-    @booking.teacher = @teacher
+    @booking.student_id = current_user.id
+    @booking.teacher_id = @teacher.id
+    @booking.end_time = put_end_time(@booking.start_time)
 
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to teacher_path(@teacher), notice: 'booking was successfully created.' }
-        format.js {}
+        format.html { redirect_to @teacher, notice: 'Booking was successfully created.' }
+        format.json { render :show, status: :created, location: @booking }
       else
         format.html {render :new}
-        format.js {}
+        format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def index
-    @booking = @teacher.bookings
+    @bookings = @teacher.bookings.all
   end
 
   def destroy
   end
 
 private
+
+  def put_end_time(start_time)
+     (start_time.to_time + 1.hours).to_datetime
+  end
 
   def booking_params
     params.require(:booking).permit(:start_time, :end_time)
