@@ -18,9 +18,31 @@
       <li><%= link_to "Contact", pages_contact_path %></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+       <% if user_signed_in? && current_user.teacher %>
+       <!-- teacher links -->
+				  <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Teacher Pages <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	          	<li><%= link_to "My Profile", teacher_path(current_user.teacher.id) %></li>
+	          	<li><%= link_to "View Availabilities", teacher_availabilities_path(current_user.teacher.id)  %></li>
+	          	<li></li>
+	            <li role="separator" class="divider"></li>
+	          	<li><%= link_to "Add an Availability", new_teacher_availability_path(current_user.teacher.id) %></li>
+	            <li><%= link_to "Edit Teacher Profile", edit_teacher_path(current_user.teacher.id) %></li>
+	          </ul>
+	        </li>
+        <% end %>
+
       <% if user_signed_in? %>
-        <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-        <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+      <!-- user links -->
+	      <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.username %> <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><%= link_to "Edit User Profile", edit_user_registration_path %></li>
+	            <li role="separator" class="divider"></li>
+	            <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+	          </ul>
+	        </li>
       <% else %>
         <li><%= link_to "Sign Up", new_user_registration_path %></li>
         <li><%= link_to "Sign In", new_user_session_path %></li>
