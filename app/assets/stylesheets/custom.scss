@@ -51,3 +51,11 @@ body {
 main {
   flex: 1 0 auto;
 }
+
+.jumbotron {
+	background-image: url('https://s3.amazonaws.com/learnabli/book.jpg');
+	color: white;
+	h1, h2 {
+		font-family: guardian-egyptt, georgia, serif;
+	}
+}
