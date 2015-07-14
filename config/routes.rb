@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-  get 'booking/new'
-
-  get 'booking/create'
-
-  get 'booking/index'
-
-  get 'booking/destroy'
 
   devise_for :users
   get 'pages/contact'
@@ -16,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :teachers do 
   	resources :availabilities
+    resources :bookings
   end
 
   root 'teachers#index'
