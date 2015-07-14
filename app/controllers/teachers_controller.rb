@@ -25,6 +25,7 @@ class TeachersController < ApplicationController
   # POST /teachers.json
   def create
     @teacher = Teacher.new(teacher_params)
+    @teacher.user_id = current_user.id
 
     respond_to do |format|
       if @teacher.save

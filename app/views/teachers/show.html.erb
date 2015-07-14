@@ -10,6 +10,7 @@
     <p>Teaching: <%= @teacher.subject %></p>
     <p>About <%= @teacher.first_name %>: <%= @teacher.description %></p>
     <p>Hourly Rate: <%= number_to_currency(@teacher.price) %></p>
+    <p>Time Zone: <%= @teacher.user.time_zone %></p>
 
   </div>
 </div>

@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
 
 	validates :username, presence: true
 	validates :time_zone, presence: true
+	has_one :teacher, dependent: :destroy
 end
