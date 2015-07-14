@@ -8,6 +8,6 @@ class User < ActiveRecord::Base
 	validates :time_zone, presence: true
 	has_one :teacher, dependent: :destroy
   has_many :bookings, foreign_key: :student_id
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   
 end
