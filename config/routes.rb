@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   get 'pages/about'
 
-  resources :teachers
+  resources :teachers do 
+  	resources :availabilities
+  end
 
   root 'teachers#index'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -12,6 +12,8 @@
     <p>Hourly Rate: <%= number_to_currency(@teacher.price) %></p>
     <p>Time Zone: <%= @teacher.user.time_zone %></p>
 
+		<div id="calendar" data-teacher-id="<%= @teacher.id %>" data-teacher-timezone="<%= @teacher.user.time_zone %>"></div>
+
   </div>
 </div>
 
