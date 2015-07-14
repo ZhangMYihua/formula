@@ -9,7 +9,7 @@ class Teacher < ActiveRecord::Base
 	has_many :availabilities, dependent: :destroy
   has_many :bookings 
   has_many :users, through: :bookings
-  has_many :interviews
+  has_many :reviews
 
   def availability_open?(requested_availability)
     new_availability = requested_availability.timerange    
