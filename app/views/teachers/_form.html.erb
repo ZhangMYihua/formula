@@ -1,11 +1,11 @@
 <%= form_for(@teacher, :html => {multipart: true}) do |f| %>
-  <% if @teacher.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@teacher.errors.count, "error") %> prohibited this teacher from being saved:</h2>
-
+<% if @teacher.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><%= pluralize(@teacher.errors.count, "error") %> prohibited this form from being saved:</h4>
       <ul>
-      <% @teacher.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% @teacher.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
