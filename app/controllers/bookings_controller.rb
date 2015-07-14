@@ -13,8 +13,8 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to teacher_path(@teacher), notice: 'booking was successfully created.' }
-        format.js {}
+        format.html { redirect_to @teacher, notice: 'Availability was successfully created.' }
+        format.json { render :show, status: :created, location: @availability }
       else
         format.html {render :new}
         format.js {}
