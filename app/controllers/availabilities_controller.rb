@@ -7,7 +7,7 @@ class AvailabilitiesController < ApplicationController
   # GET /availabilities
   # GET /availabilities.json
   def index
-    @availabilities = Availability.all
+    @availabilities = @teacher.availabilities.all
   end
 
   # GET /availabilities/1
@@ -17,7 +17,7 @@ class AvailabilitiesController < ApplicationController
 
   # GET /availabilities/new
   def new
-    @availability = Availability.new
+    @availability = @teacher.availabilities.new
   end
 
   # GET /availabilities/1/edit
@@ -27,7 +27,7 @@ class AvailabilitiesController < ApplicationController
   # POST /availabilities
   # POST /availabilities.json
   def create
-    @availability = Availability.new(availability_params)
+    @availability = @teacher.availabilities.build(availability_params)
     @availability.teacher_id = current_user.teacher.id
 
     respond_to do |format|

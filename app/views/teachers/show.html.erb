@@ -16,6 +16,7 @@
 </div>
 
 <%= link_to 'New Availability', new_teacher_availability_path(@teacher), class: 'btn btn-link' %>
+<%= link_to 'New Booking', new_teacher_booking_path(@teacher), class: 'btn btn-link' %>
 
 <% if current_user == @teacher.user %>
 	<%= link_to 'Edit', edit_teacher_path(@teacher), class: "btn btn-link" %> |

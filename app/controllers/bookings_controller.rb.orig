@@ -23,7 +23,11 @@ class BookingsController < ApplicationController
   end
 
   def index
+<<<<<<< HEAD
+    @bookings = @teacher.bookings
+=======
     @bookings = @teacher.bookings.all
+>>>>>>> 95b0de12db040d114987b242e72fd8a09e2a41f0
   end
 
   def destroy
