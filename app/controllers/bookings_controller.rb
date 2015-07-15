@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_teacher
+  before_action :authenticate_user!
 
   def new
     @booking = @teacher.bookings.new

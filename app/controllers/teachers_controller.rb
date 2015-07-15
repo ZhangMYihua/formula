@@ -12,7 +12,12 @@ class TeachersController < ApplicationController
   # GET /teachers/1
   # GET /teachers/1.json
   def show
-    @reviews = Review.where(teacher_id: @teacher.id)
+    @reviews = Review.where(teacher_id: @teacher.id).order("created_at DESC")
+    if @reviews.blank? 
+    	@avg_rating = 0
+    else
+	    @avg_rating = @reviews.average(:rating).round(2)
+	  end
   end
 
   # GET /teachers/new

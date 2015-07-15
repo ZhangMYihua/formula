@@ -1,5 +1,21 @@
-<h1>New Booking</h1>
+<div class="col-sm-11">
+	<div class="row">
+		<h1 class="text-center">Make a Booking</h1>
+	</div>
 
-<%= render 'form' %>
+	<br>
+	<br>
+	<br>
+	<div class="row">
+		
+		<div class="col-sm-4">
+		<h3>Choose a time that matches the availibity on the calendar on the right</h3>
+			<%= render 'form' %>
+		</div>
 
-<%= link_to 'Back', teacher_path(@teacher) %>
+
+		<div class="col-sm-7 col-sm-offset-1">
+			<div id="calendar" class="calendar" data-teacher-id="<%= @teacher.id %>" data-teacher-timezone="<%= current_user.time_zone %>"></div>
+		</div>
+	</div>
+</div>

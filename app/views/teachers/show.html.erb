@@ -1,9 +1,13 @@
-<div class="row">
+<!-- <div class="row"> -->
   <div class="col-md-3">
+
 	  <div class="row">
-	      <%= image_tag @teacher.avatar_url, class: "img-rounded" %>
+      <%= image_tag @teacher.avatar_url, class: "img-rounded" %>
+      <div class="star-rating" data-score= <%= @avg_rating %>></div>
+      <p><%= "#{@reviews.length} reviews" %></p>
 	  </div>
 	  <br>
+
     <div class="row">
 	    <% if user_signed_in? %>
 				<% if current_user.teacher %>
@@ -11,19 +15,29 @@
 						<%= link_to 'Book a Lesson with this Teacher', new_teacher_booking_path(@teacher), class: 'btn btn-primary' %>
 						<% end %>
 				<% else %>
-				<%= link_to "Book a class with #{@teacher.first_name}!", new_teacher_booking_path(@teacher), class: 'btn btn-primary' %>
+				<%= link_to "Book a class with #{@teacher.first_name}!", new_teacher_booking_path(@teacher), class: 'btn btn-lg btn-primary' %>
 				<% end %>
 			<% end %>
 		</div>
-		<div class="row">
+<br>
 		<% if @reviews.any? %>
-      <% @reviews.each do |review| %>
-        <p><%= review.rating %></p>
-        <p><%= review.comment %></p>
-      <% end %>
+			<div class="row">
+	      <table class="table">
+				  <tbody>
+				    <% @reviews.each do |review| %>
+				      <tr>
+				        <td>
+				          <div class="star-rating" data-score= <%= review.rating %> ></div>
+				          <p><%= h(review.comment).gsub(/\n/, '<br>').html_safe %></p>
+				        </td>
+				      </tr>
+				    <% end %>
+				  </tbody>
+				</table>
+	    </div>
     <% end %>
-    </div>
-  </div>
+
+	</div>
 
   <div class="col-md-8 col-md-offset-1 teacher-show">
     <h3><%= "#{@teacher.first_name} #{@teacher.last_name }" %></h3>
@@ -38,4 +52,12 @@
   </div>
 </div>
 
-
+<script>
+	$('.star-rating').raty({
+		path: 'https://s3.amazonaws.com/learnabli/stars',
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		}
+	});
+</script>
