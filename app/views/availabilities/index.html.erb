@@ -26,8 +26,8 @@
 	        <td><%= availability.end_time %></td>
 	        <td><%= availability.teacher_id %></td>
 	        <td><%= link_to 'Show', teacher_availabilities_path %></td>
-	        <td><%= link_to 'Edit', edit_teacher_availability_path(availability) %></td>
-	        <td><%= link_to 'Destroy', teacher_availability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	        <td><%= link_to 'Edit', edit_teacher_availability_path(@teacher, availability) %></td>
+	        <td><%= link_to 'Destroy', teacher_availability_path(@teacher, availability), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	      </tr>
 	    <% end %>
 	  </tbody>

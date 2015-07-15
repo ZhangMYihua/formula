@@ -5,6 +5,7 @@
       <%= image_tag @teacher.avatar_url, class: "img-rounded" %>
       <div class="star-rating" data-score= <%= @avg_rating %>></div>
       <p><%= "#{@reviews.length} reviews" %></p>
+      <p><%= @teacher.description %></p>
 	  </div>
 	  <br>
 
@@ -12,7 +13,7 @@
 	    <% if user_signed_in? %>
 				<% if current_user.teacher %>
 					<% if current_user.teacher != @teacher %>
-						<%= link_to 'Book a Lesson with this Teacher', new_teacher_booking_path(@teacher), class: 'btn btn-primary' %>
+						<%= link_to "Book a class with #{@teacher.first_name}!", new_teacher_booking_path(@teacher), class: 'btn btn-primary' %>
 						<% end %>
 				<% else %>
 				<%= link_to "Book a class with #{@teacher.first_name}!", new_teacher_booking_path(@teacher), class: 'btn btn-lg btn-primary' %>
@@ -23,12 +24,29 @@
 		<% if @reviews.any? %>
 			<div class="row">
 	      <table class="table">
+	      	<thead>
+	      		<tr>
+		      		<th class="col-md-3"></th>
+	      			<th class="col-md-3"></th>	
+	      		</tr>
+	      	</thead>
+
 				  <tbody>
 				    <% @reviews.each do |review| %>
 				      <tr>
+				      	<td>
+					      	<h4><%= review.student.username %></h4>
+					      	<p><%= review.created_at.strftime("%-m/%-d/%-y") %></p>
+				      	</td>
 				        <td>
 				          <div class="star-rating" data-score= <%= review.rating %> ></div>
 				          <p><%= h(review.comment).gsub(/\n/, '<br>').html_safe %></p>
+				          <% if user_signed_in? %>
+				          	<% if (review.student == current_user) || (current_user.admin?) %>
+				          		<%= link_to "Edit", edit_teacher_review_path(@teacher, review) %>
+				          		<%= link_to "Delete", teacher_review_path(@teacher, review), method: :delete %>
+			          		<% end %>
+		          		<% end %>
 				        </td>
 				      </tr>
 				    <% end %>
