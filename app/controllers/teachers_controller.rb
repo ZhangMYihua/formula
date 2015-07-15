@@ -82,8 +82,8 @@ class TeachersController < ApplicationController
     end
 
     def check_user
-      if current_user != @teacher.user
-        redirect_to root_url, alert: "Sorry, this acocunt belongs to someone else"
+      unless (current_user == @teacher.user) || (current_user.admin?)
+        redirect_to root_url, alert: "Sorry, this account belongs to someone else"
       end
     end
 end
