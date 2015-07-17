@@ -31,36 +31,7 @@
 		</div>
 
 	<% end %>
-
-<br>
-<br>
-<br>
-	<h3>Current Availabilities</h3>
-
-		<table class="table">
-		  <thead>
-		    <tr>
-		      <th>Start time</th>
-		      <th>End time</th>
-		      <th colspan="3"></th>
-		    </tr>
-		  </thead>
-
-		  <tbody>
-		    <% @availabilities.each do |availability| %>
-		      <tr>
-		        <td><%= availability.start_time.strftime("%-m/%-d/%-y") %></td>
-		        <td><%= availability.end_time.strftime("%-m/%-d/%-y") %></td>
-		        <td><%= link_to 'Show', teacher_availabilities_path(@teacher, availability) %></td>
-		        <td><%= link_to 'Edit', edit_teacher_availability_path(@teacher, availability) %></td>
-		        <td><%= link_to 'Destroy', teacher_availability_path(@teacher, availability), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		      </tr>
-		    <% end %>
-		  </tbody>
-		</table>
-
-
-
+	
 </div>
 
 <div class="col-sm-7">
