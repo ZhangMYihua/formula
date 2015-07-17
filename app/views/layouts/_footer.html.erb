@@ -1,6 +1,6 @@
 <footer class="footer">
   <div class="container">
-    <p class="text-muted text-xs-center">&#169; 2015 
+    <p class="text-muted center">&#169; 2015 
 		<% if user_signed_in? && current_user.teacher.blank? %>
 			<%= link_to 'Become a Teacher?', new_teacher_path, class: "btn btn-link" %>
 		<% end %>

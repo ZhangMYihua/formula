@@ -53,7 +53,9 @@ main {
 }
 
 .jumbotron {
-	background-image: url('https://s3.amazonaws.com/learnabli/book.jpg');
+	// for dev sans internet
+	background-image: url('craft4.jpg');
+	// background-image: url('https://s3.amazonaws.com/learnabli/book.jpg');
 	color: white;
 	h1, h2 {
 		font-family: guardian-egyptt, georgia, serif;
@@ -62,4 +64,9 @@ main {
 
 .footer {
 	background-color: #EFEFEB;
+	padding-top: 15px;
+}
+
+.footer .container a {
+	text-align: right;
 }
